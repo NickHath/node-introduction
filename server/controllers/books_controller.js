@@ -13,20 +13,12 @@ module.exports = {
     res.status(200).send(books);
   },
   update: (req, res, next) => {
-    for (var i = 0; i < books.length; i++) {
-      if (books[i].id === +req.params.id) {
-        books[i] = Object.assign(books[i], req.body)
-      }
-    }
-    res.status(200).send(books);
-    /* -- using map
     books.map((book) => {
-      if (req.params.id === book.id) {
+      if (+req.params.id === book.id) {
         book = Object.assign(book, req.body);
       }
-    }
     })
-    */
+    res.status(200).send(books);
   },
   delete: (req, res, next) => {
     books = books.filter((book) => book.id !== +req.params.id);

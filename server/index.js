@@ -6,14 +6,11 @@ const express = require('express'),
 
 // parses body into json, puts on req.body!!!
 app.use(bodyParser.json());
+app.use(express.static( __dirname + "/../public/build"));
 
-
-app.get(`/api/getBooks`, ctrl.read);
-app.post(`/api/addBook`, ctrl.create);
-app.delete(`/api/`, ctrl.delete);
-app.put(`/api/`, ctrl.update);
-
-
-
+app.get(`/api/books`, ctrl.read);
+app.post(`/api/books`, ctrl.create);
+app.delete(`/api/books/:id`, ctrl.delete);
+app.put(`/api/books/:id`, ctrl.update);
 
 app.listen(port, () => console.log(`Server listening on port ${port}`))
